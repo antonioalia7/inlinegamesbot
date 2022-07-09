@@ -682,7 +682,7 @@ class Game
             $this->data['players']['guest'] = null;
 
             if ($this->saveData($this->data)) {
-                return $this->editMessage(__('{PLAYER_GUEST} was kicked...', ['{PLAYER_GUEST}' => $user]) . PHP_EOL . __("{PLAYER_HOST} is waiting for opponent to join...", ['{PLAYER_HOST}' => $this->getUserMention('host')]) . PHP_EOL . __("Press {BUTTON} button to join.", ['{BUTTON}' => '<b>\'' . __('Join') . '\'</b>']), $this->getReplyMarkup('lobby'));
+                return $this->editMessage(__('{PLAYER_GUEST} was kicked...', ['{PLAYER_GUEST}' => $user]) . PHP_EOL . __("{PLAYER_HOST} Sessione di gioco non trovata o scaduta...", ['{PLAYER_HOST}' => $this->getUserMention('host')]) . PHP_EOL . __("Premi {BUTTON} per unirti.", ['{BUTTON}' => '<b>\'' . __('Unisciti') . '\'</b>']), $this->getReplyMarkup('lobby'));
             }
 
             throw new StorageException();
