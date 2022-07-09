@@ -37,14 +37,14 @@ class Rockpaperscissors extends Game
      *
      * @var string
      */
-    protected static $title = 'Rock-Paper-Scissors';
+    protected static $title = 'Sasso-Carta-Forbici';
 
     /**
      * Game description
      *
      * @var string
      */
-    protected static $description = 'Rock-paper-scissors is game in which each player simultaneously forms one of three shapes with an outstretched hand.';
+    protected static $description = 'Sasso-carta-forbici è un gioco in cui ogni giocatore forma contemporaneamente una delle tre forme con la mano tesa.';
 
     /**
      * Game thumbnail image
