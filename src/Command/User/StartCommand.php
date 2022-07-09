@@ -57,7 +57,7 @@ class StartCommand extends UserCommand
         }
 
         $text = Emoji::wavingHand() . ' ';
-        $text .= '<b>' . __('Ciao!') . '</b>' . PHP_EOL;
+        $text .= '<b>' . __('Ciao e benvenuto in grzll world\'s!') . '</b>' . PHP_EOL;
         $text .= __('Per iniziare a giocare con un tuo amico, scrivi {USAGE} in qualsiasi chat tu voglia e clicca sul tasto {BUTTON}. Potrai poi scegliere il gioco tra quelli disponibili', ['{USAGE}' => '<b>\'@' . $this->getTelegram()->getBotUsername() . ' ...\'</b>', '{BUTTON}' => '<b>\'' . __('Gioca') . '\'</b>']);
 
         $data = [
