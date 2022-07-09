@@ -32,14 +32,14 @@ class Rockpaperscissorslizardspock extends Rockpaperscissors
      *
      * @var string
      */
-    protected static $title = 'Rock-Paper-Scissors-Lizard-Spock';
+    protected static $title = 'Sasso carta Forbice lucertola Spock';
 
     /**
      * Game description
      *
      * @var string
      */
-    protected static $description = 'Rock-paper-scissors-lizard-spock is a game in which each player simultaneously forms one of five shapes with an outstretched hand.';
+    protected static $description = 'Sasso-carta-forbici-lucertola-spock è un gioco in cui ogni giocatore forma contemporaneamente una delle cinque forme con una mano tesa.';
 
     /**
      * Game thumbnail image
