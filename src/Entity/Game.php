@@ -474,7 +474,7 @@ class Game
         $this->data['game_data'] = null;
 
         if ($this->saveData($this->data)) {
-            return $this->editMessage(__('{PLAYER_HOST} is waiting for opponent to join...', ['{PLAYER_HOST}' => $this->getUserMention('host')]) . PHP_EOL . __('Press {BUTTON} button to join.', ['{BUTTON}' => '<b>\'' . __('Join') . '\'</b>']), $this->getReplyMarkup('lobby'));
+            return $this->editMessage(__('{PLAYER_HOST} sta aspettando che l\'avversario si unisca...', ['{PLAYER_HOST}' => $this->getUserMention('host')]) . PHP_EOL . __('Premi {BUTTON} per unirti.', ['{BUTTON}' => '<b>\'' . __('Unisciti') . '\'</b>']), $this->getReplyMarkup('lobby'));
         }
 
         throw new StorageException();
@@ -542,7 +542,7 @@ class Game
             $this->data['players']['host'] = (array) $this->getCurrentUser(true);
 
             if ($this->saveData($this->data)) {
-                return $this->editMessage(__('{PLAYER_HOST} is waiting for opponent to join...', ['{PLAYER_HOST}' => $this->getUserMention('host')]) . PHP_EOL . __('Press {BUTTON} button to join.', ['{BUTTON}' => '<b>\'' . __('Join') . '\'</b>']), $this->getReplyMarkup('lobby'));
+                return $this->editMessage(__('{PLAYER_HOST} sta aspettando che l\'avversario si unisca...', ['{PLAYER_HOST}' => $this->getUserMention('host')]) . PHP_EOL . __('Premi {BUTTON} per unirti.', ['{BUTTON}' => '<b>\'' . __('Unisciti') . '\'</b>']), $this->getReplyMarkup('lobby'));
             }
 
             throw new StorageException();
@@ -620,7 +620,7 @@ class Game
                 $this->data['players']['guest'] = null;
 
                 if ($this->saveData($this->data)) {
-                    return $this->editMessage(__('{PLAYER} quit...', ['{PLAYER}' => $currentUserMention]) . PHP_EOL . __("{PLAYER_HOST} is now the host.", ['{PLAYER_HOST}' => $this->getUserMention('host')]) . PHP_EOL . __("{PLAYER_HOST} is waiting for opponent to join...", ['{PLAYER_HOST}' => $this->getUserMention('host')]) . PHP_EOL . __("Press {BUTTON} button to join.", ['{BUTTON}' => '<b>\'' . __('Join') . '\'</b>']), $this->getReplyMarkup('lobby'));
+                    return $this->editMessage(__('{PLAYER} quit...', ['{PLAYER}' => $currentUserMention]) . PHP_EOL . __("{PLAYER_HOST} è ora l'\host.", ['{PLAYER_HOST}' => $this->getUserMention('host')]) . PHP_EOL . __("{PLAYER_HOST} sta aspettando che l'avversario si unisca...", ['{PLAYER_HOST}' => $this->getUserMention('host')]) . PHP_EOL . __("Premi {BUTTON} per unirti.", ['{BUTTON}' => '<b>\'' . __('Unisciti') . '\'</b>']), $this->getReplyMarkup('lobby'));
                 }
 
                 throw new StorageException();
@@ -631,7 +631,7 @@ class Game
             $this->data['players']['host'] = null;
 
             if ($this->saveData($this->data)) {
-                return $this->editMessage('<i>' . __("This game session is empty.") . '</i>', $this->getReplyMarkup('empty'));
+                return $this->editMessage('<i>' . __("Questa sessione di gioco è vuota.") . '</i>', $this->getReplyMarkup('empty'));
             }
 
             throw new StorageException();
@@ -645,7 +645,7 @@ class Game
             $this->data['players']['guest'] = null;
 
             if ($this->saveData($this->data)) {
-                return $this->editMessage(__('{PLAYER} quit...', ['{PLAYER}' => $currentUserMention]) . PHP_EOL . __("{PLAYER_HOST} is waiting for opponent to join...", ['{PLAYER_HOST}' => $this->getUserMention('host')]) . PHP_EOL . __("Press {BUTTON} button to join.", ['{BUTTON}' => '<b>\'' . __('Join') . '\'</b>']), $this->getReplyMarkup('lobby'));
+                return $this->editMessage(__('{PLAYER} quit...', ['{PLAYER}' => $currentUserMention]) . PHP_EOL . __("{PLAYER_HOST} sta aspettando che l'avversario si unisca...", ['{PLAYER_HOST}' => $this->getUserMention('host')]) . PHP_EOL . __("Premi {BUTTON} per unirti.", ['{BUTTON}' => '<b>\'' . __('Unisciti') . '\'</b>']), $this->getReplyMarkup('lobby'));
             }
 
             throw new StorageException();
@@ -668,15 +668,15 @@ class Game
     protected function kickAction(): ServerResponse
     {
         if ($this->getCurrentUserId() !== $this->getUserId('host')) {
-            return $this->answerCallbackQuery(__("You're not the host!"), true);
+            return $this->answerCallbackQuery(__("Non sei l'host!"), true);
         }
 
         if (!$this->getUser('guest')) {
-            return $this->answerCallbackQuery(__("There is no player to kick!"), true);
+            return $this->answerCallbackQuery(__("Non ci sono giocatori da espellere!"), true);
         }
 
         if ($this->getUser('host')) {
-            Utilities::isDebugPrintEnabled() && Utilities::debugPrint($this->getCurrentUserMention() . ' kicked ' . $this->getUserMention('guest'));
+            Utilities::isDebugPrintEnabled() && Utilities::debugPrint($this->getCurrentUserMention() . ' espulso ' . $this->getUserMention('guest'));
 
             $user = $this->getUserMention('guest');
             $this->data['players']['guest'] = null;
@@ -688,7 +688,7 @@ class Game
             throw new StorageException();
         }
 
-        Utilities::debugPrint('Kick executed on a game without a host');
+        Utilities::debugPrint('Espulsione eseguita in una partita senza host');
 
         return $this->answerCallbackQuery();
     }
@@ -709,15 +709,15 @@ class Game
         }
 
         if ($this->getCurrentUserId() !== $this->getUserId('host') && $this->getCurrentUserId() !== $this->getUserId('guest')) {
-            return $this->answerCallbackQuery(__("You're not in this game!"), true);
+            return $this->answerCallbackQuery(__("Non sei in questo gioco!"), true);
         }
 
         if ($this->getCurrentUserId() !== $this->getUserId('host')) {
-            return $this->answerCallbackQuery(__("You're not the host!"), true);
+            return $this->answerCallbackQuery(__("Non sei l'host!"), true);
         }
 
         if (!$this->getUser('host') || !$this->getUser('guest')) {
-            Utilities::debugPrint('Received request to start the game but one of the players wasn\'t in the game');
+            Utilities::debugPrint('È stata ricevuta la richiesta di avviare il gioco ma uno dei giocatori non era in gioco');
 
             return $this->answerCallbackQuery();
         }
@@ -740,7 +740,7 @@ class Game
     protected function gameAction(): ServerResponse
     {
         if ($this->getCurrentUserId() !== $this->getUserId('host') && $this->getCurrentUserId() !== $this->getUserId('guest')) {
-            return $this->answerCallbackQuery(__("You're not in this game!"), true);
+            return $this->answerCallbackQuery(__("Non sei in questo gioco!"), true);
         }
 
         return $this->answerCallbackQuery();
@@ -787,7 +787,7 @@ class Game
             return $this->editMessage(__('{PLAYER_GUEST} joined...', ['{PLAYER_GUEST}' => $this->getUserMention('guest')]) . PHP_EOL . __('Waiting for {PLAYER} to start...', ['{PLAYER}' => $this->getUserMention('host')]) . PHP_EOL . __('Press {BUTTON} button to start.', ['{BUTTON}' => '<b>\'' . __('Play') . '\'</b>']), $this->getReplyMarkup('pregame'));
         }
 
-        return $this->editMessage(__('{PLAYER_HOST} is waiting for opponent to join...', ['{PLAYER_HOST}' => $this->getUserMention('host')]) . PHP_EOL . __('Press {BUTTON} button to join.', ['{BUTTON}' => '<b>\'' . __('Join') . '\'</b>']), $this->getReplyMarkup('lobby'));
+        return $this->editMessage(__('{PLAYER_HOST} sta aspettando che l\'avversario si unisca...', ['{PLAYER_HOST}' => $this->getUserMention('host')]) . PHP_EOL . __('Premi {BUTTON} per unirti.', ['{BUTTON}' => '<b>\'' . __('Unisciti') . '\'</b>']), $this->getReplyMarkup('lobby'));
     }
 
     /**
@@ -1034,7 +1034,7 @@ class Game
     {
         Utilities::debugPrint('Empty game data');
 
-        $result = $this->editMessage('<i>' . __("Game session not found or expired.") . '</i>', $this->getReplyMarkup('empty'));
+        $result = $this->editMessage('<i>' . __("Sessione di gioco non trovata o scaduta.") . '</i>', $this->getReplyMarkup('empty'));
 
         if (!$result->isOk()) {
             return $result;
