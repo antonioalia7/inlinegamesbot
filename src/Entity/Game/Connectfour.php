@@ -35,14 +35,14 @@ class Connectfour extends Game
      *
      * @var string
      */
-    protected static $title = 'Connect Four';
+    protected static $title = 'Forza Quattro';
 
     /**
      * Game description
      *
      * @var string
      */
-    protected static $description = 'Connect Four is a connection game in which the players take turns dropping colored discs from the top into a seven-column, six-row vertically suspended grid.';
+    protected static $description = 'Forza quattro è un gioco di connessione in cui i giocatori, a turno, fanno cadere dischi colorati dall\'alto in una griglia a sette colonne e sei file sospesa verticalmente.';
 
     /**
      * Game thumbnail image
