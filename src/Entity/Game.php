@@ -561,7 +561,7 @@ class Game
                 throw new StorageException();
             }
 
-            return $this->answerCallbackQuery(__("You cannot play with yourself!"), true);
+            return $this->answerCallbackQuery(__("Non puoi giocare con te stesso!"), true);
         }
 
         return $this->answerCallbackQuery(__("This game is full!"));
